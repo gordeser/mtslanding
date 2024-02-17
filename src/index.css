@@ -1,8 +1,39 @@
+@font-face {
+  font-family: 'MTSCompact';
+  src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSCompact/MTSCompact-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MTSCompact';
+  src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSCompact/MTSCompact-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MTSWide';
+  src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSWide/MTSWide-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MTSWide';
+  src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSWide/MTSWide-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+iframe
+{
+  display: none;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: MTSCompact, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
