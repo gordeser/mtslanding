@@ -188,17 +188,17 @@ function App() {
                         </div>
 
 
-                        <div className="price-container" style={{marginTop: "50px"}}>
-                            <div className="price">
+                        <div className="price-container">
+                            <div className="price" style={{marginBottom: "5%"}}>
                                 <div className="price-value" style={{marginTop: "5px", marginLeft: "2px"}}>{value === 0 ? 390 : 630 }</div>
                                 <div className="price-measure">₽/мес</div>
 
                                 <div className="old-price" style={{marginLeft: "20px"}}>{value === 0 ? 750 : 990 } ₽</div>
                             </div>
 
-                            <div className="price-description" style={{marginLeft: "20px", marginTop: "20px", fontSize: "17px", lineHeight: "24px"}}>
+                            <span className="price-description">
                                 Стоимость по акции первые 12 месяцев, с 13 месяца — {value === 0 ? 750 : 990 } ₽/мес
-                            </div>
+                            </span>
                         </div>
 
 
