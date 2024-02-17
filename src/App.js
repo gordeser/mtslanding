@@ -1,18 +1,18 @@
 import './App.css';
 import React, {useState} from "react";
 import Slider from '@mui/material/Slider'
-import { withStyles } from '@mui/styles';
+import {withStyles} from '@mui/styles';
 import {
     Button, Checkbox,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    FormControlLabel,
-    TextField, Typography
+    FormControlLabel, IconButton,
+    TextField, Typography,
+    useMediaQuery, useTheme
 } from "@mui/material";
-// import CheckedIcon from "../checkbox-checked.svg";
-// import UncheckedIcon from "../checkbox-empty.svg";
+// import CloseIcon from '@mui/icons-material/Close';
 
 
 function App() {
@@ -130,6 +130,9 @@ function App() {
         setOpen(false);
     };
 
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
     <div className="App">
         <div className="container">
@@ -208,29 +211,31 @@ function App() {
                                 aria-labelledby="form-dialog-title"
                                 // style={{maxWidth: "xs"}}
                                 // maxWidth="md"
+                                fullScreen={fullScreen}
                             >
-                                <DialogTitle id="form-dialog-title">
+                                <DialogTitle id="form-dialog-title" sx={{ display: 'grid', gridTemplateColumns: '1fr auto' }}>
                                     Заявка на подключение
+                                    <IconButton onClick={handleClose} sx={{}}>
+                                        <img src="//static.mts.ru/mts_rf/images/icons/modal-close-icon.svg"/>
+                                    </IconButton>
                                     <div className="form-description">
                                         Оставьте контактные данные, и мы с вами свяжемся
                                     </div>
                                 </DialogTitle>
 
-                                <DialogContent style={{ display: 'flex', flexDirection: 'column'}}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginLeft: "20px", marginTop: "5px"}}>
-                                        <div style={{position: "relative", display: "inline-block"}}>
-                                            <TextField
-                                                autoFocus
-                                                margin="dense"
-                                                id="phoneInput"
-                                                name="phoneNumber"
-                                                label="Номер"
-                                                type="text"
-                                                placeholder="+7 XXX XXX XX XX"
-                                                value={formData.phoneNumber}
-                                                onChange={handleChangeForm}
-                                            />
-                                        </div>
+                                <DialogContent>
+                                    <div className="phoneAndName">
+                                        <TextField
+                                            autoFocus
+                                            margin="dense"
+                                            id="phoneInput"
+                                            name="phoneNumber"
+                                            label="Номер"
+                                            type="text"
+                                            placeholder="+7 XXX XXX XX XX"
+                                            value={formData.phoneNumber}
+                                            onChange={handleChangeForm}
+                                        />
                                         <TextField
                                             margin="dense"
                                             id="nameInput"
@@ -251,7 +256,7 @@ function App() {
                                         />}
                                         label={
                                             <Typography>
-                                                Я даю <a href="https://static.mts.ru/mts_rf/images/homeservices/soglasie-pdn-zayavka.pdf">согласие</a> на обработку своих персональных данных
+                                                Я даю <a href="https://static.mts.ru/mts_rf/images/homeservices/soglasie-pdn-zayavka.pdf" target="_blank">согласие</a> на обработку своих персональных данных
                                             </Typography>
                                         }
                                     />

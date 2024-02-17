@@ -63,6 +63,28 @@
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.1); /* Добавляем немного тени */
 }
 
+.phoneAndName {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .phoneAndName {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+
+  #someId {
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+}
+
+
 .inside-content {
   position: relative;
   top: 5%;
@@ -216,8 +238,12 @@
 }
 
 #someId {
-  /*margin-top: px;*/
+  /*margin-top: 5px;*/
   margin-left: 15px;
+}
+
+@media screen and (max-width: 800px) {
+
 }
 
 .css-ahj2mt-MuiTypography-root {
