@@ -168,8 +168,7 @@ function App() {
             fetch('http://localhost:5000/api/create', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Basic ' + btoa('admin' + ':' + 'password')
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({name, phoneNumber, tariffName, speed})
             }).catch(err => {
@@ -244,17 +243,16 @@ function App() {
 
 
                         <div className="price-container">
-                            <div className="price" style={{marginBottom: "5%"}}>
+                            <div className="price">
                                 <div className="price-value" style={{marginTop: "5px", marginLeft: "2px"}}>{sliderValue === 0 ? 390 : 630 }</div>
                                 <div className="price-measure">₽/мес</div>
-
                                 <div className="old-price" style={{marginLeft: "20px"}}>{sliderValue === 0 ? 750 : 990 } ₽</div>
                             </div>
+                        </div>
 
-                            <span className="price-description">
+                        <span className="price-description">
                                 Стоимость по акции первые 12 месяцев, с 13 месяца — {sliderValue === 0 ? 750 : 990 } ₽/мес
                             </span>
-                        </div>
 
 
                         <div className="connect-button" style={{marginTop: "28px", marginLeft: "20px", marginBottom: "5px"}}>
