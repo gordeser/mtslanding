@@ -97,7 +97,10 @@
   }
 }
 
-
+#phoneInput-helper-text, #nameInput-helper-text {
+  font-family: MTSCompact, sans-serif;
+  font-size: 12px;
+}
 
 @media screen and (max-width: 800px) {
   .image {
@@ -137,6 +140,7 @@
   top: 5%;
   left: 4.5%;
 }
+
 
 .badge {
   position: relative;
@@ -290,7 +294,6 @@
 }
 
 #someId {
-  /*margin-top: 5px;*/
   margin-left: 15px;
 }
 
@@ -312,7 +315,7 @@ a {
 
 .MuiDialog-paperWidthSm {
   width: 752px ;
-  height: 400px;
+  height: 420px;
   max-width: 752px !important;
   border-radius: 24px !important;
 }

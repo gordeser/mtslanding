@@ -12,7 +12,6 @@ import {
     TextField, Typography,
     useMediaQuery, useTheme
 } from "@mui/material";
-// import CloseIcon from '@mui/icons-material/Close';
 
 
 function App() {
@@ -27,9 +26,6 @@ function App() {
             label: '1 Гбит/c'
         }
     ]
-
-    // const
-
     const StyledSlider = withStyles({
         root: {
             color: 'gray', // Цвет слайдера по умолчанию
@@ -85,11 +81,10 @@ function App() {
     })(Slider);
 
 
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event, newValue) => {
-
-        setValue(newValue);
+    // sliderValue
+    const [sliderValue, setSliderValue] = useState(0);
+    const handleChangeSlider = (event, newValue) => {
+        setSliderValue(newValue);
     };
 
     const CustomButton = withStyles({
@@ -103,35 +98,95 @@ function App() {
         }
     })(Button);
 
-    const [open, setOpen] = useState(false);
+    const [tariffName, setTariffName] = useState('МТС Новогодний+')
 
-    const handleClickOpen = () => {
-        setOpen(true);
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleOpenDialog = () => {
+        setOpenDialog(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+        setPhoneNumberError(false);
+        setNameError(false);
+        setCheckError(false);
+        setChecked(false);
     }
 
-    const [formData, setFormData] = useState({
-        phoneNumber: '+7',
-        name: ''
-    });
+    const [phoneNumber, setPhoneNumber] = useState('+7')
+    const [name, setName] = useState('')
+    const [checked, setChecked] = useState(false)
 
-    const handleChangeForm = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
+    const handleChangeCheckbox = (e) => {
+        setChecked(e.target.checked)
+    }
 
-    const handleSubmit = () => {
-        console.log(formData); // Здесь можно выполнить дополнительные действия с данными формы
-        setOpen(false);
+    const handleChangePhoneNumber = (e) => {
+        let value = e.target.value;
+        if (!value.startsWith('+7')) {
+            value = '+7'
+        }
+
+        const test = isNaN(parseInt(value.slice(-1)))
+
+        if (!test && value.length <= 12) {
+            setPhoneNumber(value)
+        }
+    }
+
+    const handleChangeName = (e) => {
+        setName(e.target.value)
+    }
+
+    const [phoneNumberError, setPhoneNumberError] = useState(false);
+    const [nameError, setNameError] = useState(false);
+    const [checkError, setCheckError] = useState(false);
+
+    const handleSubmitForm = () => {
+        if (phoneNumber.length !== 12  || !phoneNumber.startsWith('+79')) {
+            setPhoneNumberError(true);
+        } else {
+            setPhoneNumberError(false);
+        }
+
+        if (name.length === 0) {
+            setNameError(true);
+        } else {
+            setNameError(false);
+        }
+
+        if (!checked) {
+            setCheckError(true);
+        } else {
+            setCheckError(false);
+        }
+
+        if (phoneNumber.length === 12 && name.length !== 0 && checked) {
+            let speed = sliderValue === 0 ? '500 Мбит/c' : '1 Гбит/с'
+
+            fetch('http://localhost:5000/api/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic ' + btoa('admin' + ':' + 'password')
+                },
+                body: JSON.stringify({name, phoneNumber, tariffName, speed})
+            }).catch(err => {
+                console.log('Error:', err)
+            })
+
+            setPhoneNumber('+7');
+            setName('');
+            setChecked(false);
+            setOpenDialog(false);
+        }
     };
 
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+
+
 
   return (
     <div className="App">
@@ -147,7 +202,7 @@ function App() {
                             </div>
 
                             <div className="title">
-                                МТС Новогодний+
+                                {tariffName}
                             </div>
 
                         {/*</div>*/}
@@ -173,13 +228,13 @@ function App() {
 
                             <div className="speed" style={{marginTop: "5px"}}>
                                 <img src="//static.mts.ru/mts_rf/images/content/cards/icon_card_wifi.svg" className="wifi" />
-                                { value === 0 ? '500 Мбит/c' : '1 Гбит/с'}
+                                { sliderValue === 0 ? '500 Мбит/c' : '1 Гбит/с'}
                             </div>
 
                             <div style={{marginLeft: "20px", marginTop: "5px", fontFamily: "MTSCompact", maxWidth: "85%"}}>
                             <StyledSlider
-                                value={value}
-                                onChange={handleChange}
+                                value={sliderValue}
+                                onChange={handleChangeSlider}
                                 step={null} // Шаг слайдера (null - только 2 значения)
                                 aria-labelledby="discrete-slider"
                                 marks={marks}
@@ -190,34 +245,33 @@ function App() {
 
                         <div className="price-container">
                             <div className="price" style={{marginBottom: "5%"}}>
-                                <div className="price-value" style={{marginTop: "5px", marginLeft: "2px"}}>{value === 0 ? 390 : 630 }</div>
+                                <div className="price-value" style={{marginTop: "5px", marginLeft: "2px"}}>{sliderValue === 0 ? 390 : 630 }</div>
                                 <div className="price-measure">₽/мес</div>
 
-                                <div className="old-price" style={{marginLeft: "20px"}}>{value === 0 ? 750 : 990 } ₽</div>
+                                <div className="old-price" style={{marginLeft: "20px"}}>{sliderValue === 0 ? 750 : 990 } ₽</div>
                             </div>
 
                             <span className="price-description">
-                                Стоимость по акции первые 12 месяцев, с 13 месяца — {value === 0 ? 750 : 990 } ₽/мес
+                                Стоимость по акции первые 12 месяцев, с 13 месяца — {sliderValue === 0 ? 750 : 990 } ₽/мес
                             </span>
                         </div>
 
 
                         <div className="connect-button" style={{marginTop: "28px", marginLeft: "20px", marginBottom: "5px"}}>
-                            <CustomButton variant="contained" onClick={handleClickOpen}>Подключить</CustomButton>
+                            <CustomButton variant="contained" onClick={handleOpenDialog}>Подключить</CustomButton>
 
                             <Dialog
-                                open={open}
-                                onClose={handleClose}
+                                open={openDialog}
+                                onClose={handleCloseDialog}
                                 aria-labelledby="form-dialog-title"
-                                // style={{maxWidth: "xs"}}
-                                // maxWidth="md"
                                 fullScreen={fullScreen}
                             >
                                 <DialogTitle id="form-dialog-title" sx={{ display: 'grid', gridTemplateColumns: '1fr auto' }}>
                                     Заявка на подключение
-                                    <IconButton onClick={handleClose} sx={{}}>
-                                        <img src="//static.mts.ru/mts_rf/images/icons/modal-close-icon.svg"/>
+                                    <IconButton onClick={handleCloseDialog}>
+                                        <img src="//static.mts.ru/mts_rf/images/icons/modal-close-icon.svg" alt="Close icon"/>
                                     </IconButton>
+
                                     <div className="form-description">
                                         Оставьте контактные данные, и мы с вами свяжемся
                                     </div>
@@ -225,37 +279,69 @@ function App() {
 
                                 <DialogContent>
                                     <div className="phoneAndName">
-                                        <TextField
-                                            autoFocus
-                                            margin="dense"
-                                            id="phoneInput"
-                                            name="phoneNumber"
-                                            label="Номер"
-                                            type="text"
-                                            placeholder="+7 XXX XXX XX XX"
-                                            value={formData.phoneNumber}
-                                            onChange={handleChangeForm}
-                                        />
-                                        <TextField
-                                            margin="dense"
-                                            id="nameInput"
-                                            name="name"
-                                            label="Имя"
-                                            type="text"
-                                            value={formData.name}
-                                            onChange={handleChangeForm}
-                                        />
+                                        {phoneNumberError ? (
+                                            <TextField
+                                                error
+                                                margin="dense"
+                                                id="phoneInput"
+                                                name="phoneNumber"
+                                                label="Номер"
+                                                type="text"
+                                                value={phoneNumber}
+                                                helperText="Вы ввели неправильный номер телефона"
+                                                onChange={handleChangePhoneNumber}
+                                            />
+                                        ) : (
+                                            <TextField
+                                                margin="dense"
+                                                id="phoneInput"
+                                                name="phoneNumber"
+                                                label="Номер"
+                                                type="text"
+                                                value={phoneNumber}
+                                                onChange={handleChangePhoneNumber}
+                                            />
+                                        )}
+
+                                        {nameError ? (
+                                            <TextField
+                                                error
+                                                margin="dense"
+                                                id="nameInput"
+                                                name="name"
+                                                label="Имя"
+                                                type="text"
+                                                value={name}
+                                                helperText="Введите имя"
+                                                onChange={handleChangeName}
+                                            />
+                                        ) : (
+                                            <TextField
+                                                margin="dense"
+                                                id="nameInput"
+                                                name="name"
+                                                label="Имя"
+                                                type="text"
+                                                value={name}
+                                                onChange={handleChangeName}
+                                            />
+                                        )}
+
+
                                     </div>
 
                                     <FormControlLabel id="someId"
-                                        control={<Checkbox
+                                        control={
+                                        <Checkbox
                                             id="oneMoreId"
                                             size="ownsize"
-                                            icon={<img src="//static.mts.ru/mts_rf/images/icons/checkbox-empty.svg"/>}
-                                            checkedIcon={<img src="//static.mts.ru/mts_rf/images/icons/checkbox-checked.svg" />}
+                                            checked={checked}
+                                            onChange={handleChangeCheckbox}
+                                            icon={<img src="//static.mts.ru/mts_rf/images/icons/checkbox-empty.svg" alt="Checkbox empty"/>}
+                                            checkedIcon={<img src="//static.mts.ru/mts_rf/images/icons/checkbox-checked.svg" alt="Checkbox checked"/>}
                                         />}
                                         label={
-                                            <Typography>
+                                            <Typography sx={checkError ? {color: "#d32f2f"} : {}}>
                                                 Я даю <a href="https://static.mts.ru/mts_rf/images/homeservices/soglasie-pdn-zayavka.pdf" target="_blank">согласие</a> на обработку своих персональных данных
                                             </Typography>
                                         }
@@ -263,7 +349,7 @@ function App() {
 
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleClose} size="small">
+                                    <Button onClick={handleSubmitForm} size="small">
                                         Оставить заявку
                                     </Button>
                                 </DialogActions>
