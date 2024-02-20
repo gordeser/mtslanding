@@ -1,0 +1,637 @@
+/* MTS Fonts */
+
+@font-face {
+    font-family: 'MTSCompact';
+    src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSCompact/MTSCompact-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MTSCompact';
+    src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSCompact/MTSCompact-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MTSWide';
+    src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSWide/MTSWide-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MTSWide';
+    src: url('//static.mts.ru/mts_rf/images/fonts/v1/MTSWide/MTSWide-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+/* Main container*/
+
+.container {
+    position: relative; /* Устанавливаем относительное позиционирование для контейнера */
+    width: 100vw; /* Ширина контейнера равна ширине экрана */
+    height: 100vh; /* Высота контейнера равна высоте экрана */
+    overflow-y: auto; /* Включаем вертикальную прокрутку, если контент выходит за пределы экрана */
+    overflow-x: hidden; /* Скрываем горизонтальный скроллер */
+}
+
+/* MTS Tariff image*/
+
+.image {
+    position: relative; /* Устанавливаем абсолютное позиционирование */
+    top: 0; /* Размещаем картинку вверху контейнера */
+    left: 0; /* Размещаем картинку слева контейнера */
+    width: 100%; /* Ширина картинки равна ширине контейнера */
+    height: 1000px; /* Высота картинки равна высоте контейнера */
+    background-size: cover; /* Растягиваем изображение, чтобы оно занимало всю площадь */
+    background-position: center; /* Центрируем изображение */
+}
+
+@media screen and (max-width: 1294px) {
+    .image {
+        height: 1100px; /* Высота картинки равна высоте контейнера */
+    }
+}
+
+/* Tariff details */
+
+.white-rectangle {
+    position: absolute;
+    top: 5%; /* Отступ сверху */
+    left: 2%; /* Отступ слева */
+    /*width: 40%; !* Ширина белого прямоугольника слева *!*/
+    height: 83%; /* Высота на 50px меньше высоты контейнера */
+    width: 50%;
+    background-color: white;
+    border-radius: 50px; /* Устанавливаем радиус скругления для всех углов */
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1); /* Добавляем немного тени */
+}
+
+/* Phone and name container (dialog) */
+
+.phoneAndName {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+    .price-description {
+        font-size: 17px !important;
+        max-width: 85% !important;
+    }
+
+    .title {
+        font-size: 44px !important;
+    }
+}
+
+/*@media screen and (max-width: 420px) {*/
+/*  .price-description {*/
+/*    font-size: 11px !important;*/
+/*  }*/
+/*}*/
+
+#phoneInput-helper-text, #nameInput-helper-text {
+    font-family: MTSCompact, sans-serif;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 800px) {
+    .white-rectangle {
+        width: 95%;
+        /*height: 70%;*/
+    }
+
+    .title {
+        font-size: 40px !important;
+    }
+
+    .badge {
+        width: 40% !important;
+        height: 10% !important;
+    }
+
+    .phoneAndName {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+
+    #someId {
+        margin-top: 20px;
+        margin-left: 15px;
+    }
+}
+
+
+.inside-content {
+    position: relative;
+    top: 5%;
+    left: 4.5%;
+}
+
+
+.badge {
+    position: relative;
+    display: flex; /* Используем flexbox */
+    margin: 20px;
+    width: 20%;
+    height: 15%;
+    text-align: center;
+    background: #007cff;
+    font-family: MTSCompact, sans-serif;
+    color: white;
+    font-weight: 500;
+    font-size: 0.85em;
+    border-radius: 5px;
+    align-items: center; /* Размещаем содержимое по вертикали по центру */
+    justify-content: center; /* Размещаем содержимое по горизонтали по центру */
+}
+
+.title {
+    color: black;
+    font-family: MTSWide, sans-serif;
+    font-size: 56px;
+    margin-left: 20px;
+    max-width: 90%;
+}
+
+.short-description {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: #1d2023;
+    font-family: MTSCompact, sans-serif;
+    font-size: 20px;
+    text-align: left; /* Выравниваем текст по центру */
+    max-width: 70%;
+}
+
+.sim-card, .phone, .tv, .wifi {
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+    filter: brightness(0) saturate(100%) invert(0%)
+    sepia(90%) saturate(7500%) hue-rotate(59deg) brightness(105%)
+    contrast(111%);
+}
+
+.gigabytes, .minutes, .channels, .speed {
+    display: flex;
+    align-items: end;
+    font-family: MTSCompact, sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.MuiSlider-markLabel {
+    font-family: MTSCompact, sans-serif !important;
+    color: #626C77 !important;
+    font-size: 17px !important;
+}
+
+.MuiSlider-markLabel[data-index="0"] {
+    margin-left: 50px !important;
+}
+
+.MuiSlider-markLabel[data-index="1"] {
+    margin-left: -30px !important;
+}
+
+.price {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+
+    margin-left: 20px;
+    margin-top: 5%;
+    font-family: MTSCompact, sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: -5px;
+
+    /*align-items: flex-end;*/
+    flex-wrap: wrap;
+}
+
+.price-measure {
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 5%;
+}
+
+.old-price {
+    margin-top: 4%;
+    position: relative;
+    /*display: inline-block;*/
+    color: #626C77;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+
+.old-price:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 2px solid;
+    border-color: inherit;
+    transform: rotate(-8deg);
+    color: #ff0032;
+}
+
+.price-description {
+    display: block;
+    color: #626C77;
+    margin-left: 20px;
+    margin-top: 30px;
+    font-size: 17px;
+    line-height: 24px;
+    max-width: 90%;
+    white-space: pre-wrap;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+    margin-top: 50px;
+    /*margin-bottom: 30px;*/
+}
+
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root, .css-1knaqv7-MuiButtonBase-root-MuiButton-root {
+    background: #ff0032 !important;
+    font-family: MTSCompact, sans-serif !important;
+    font-size: 17px !important;
+    height: 52px !important;
+    line-height: 1 !important;
+    padding: 16px 30px !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    display: inline-block !important;
+    text-align: center !important;
+    vertical-align: center !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    width: 45% !important;
+    margin-top: 0 !important;
+}
+
+#someId {
+    margin-left: 15px;
+}
+
+
+.css-ahj2mt-MuiTypography-root {
+    font-family: MTSCompact, sans-serif !important;
+    font-size: 1.0625rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5rem !important;
+}
+
+a {
+    color: #007cff;
+    text-decoration: none;
+}
+
+.MuiDialog-paperWidthSm {
+    width: 752px ;
+    height: 420px;
+    max-width: 752px !important;
+    border-radius: 24px !important;
+}
+
+#form-dialog-title {
+    font-family: MTSCompact, sans-serif;
+    font-size: 32px;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.form-description {
+    font-family: MTSCompact, sans-serif;
+    font-size: 20px;
+    color: #626C77;
+    /*margin-left: 20px;*/
+    font-weight: normal;
+}
+
+#phoneInput {
+    width: 290px !important;
+    /*padding: ;*/
+    /*box-sizing: border-box; !important;*/
+}
+
+#nameInput {
+    /*display: flex !important;*/
+    /*align-items: flex-start !important;*/
+    /*justify-content: center !important;*/
+    width: 290px !important;
+    /*margin-right: 30px !important;*/
+    /*margin-left: 20px !important;*/
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+    margin-right: 20px !important;
+}
+
+input::placeholder {
+    opacity: 0.7 !important;
+}
+
+.MuiButton-sizeSmall {
+    color: white !important;
+    display: flex !important;
+    margin-bottom: 40px !important;
+    width: 90% !important;
+    padding: 10px !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+.css-knqc4i-MuiDialogActions-root {
+    justify-content: center !important;
+}
+
+
+/* new */
+
+.price-value-block {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    font-family: MTSCompact, sans-serif;
+}
+
+.current-price {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+}
+
+.price-value {
+    font-size: 32px;
+    line-height: 36px;
+    margin-right: 2px;
+}
+
+.unit-of-measure {
+    font-size: 24px;
+    line-height: 28px;
+    margin-right: 3px;
+}
+
+.previous-price {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #626C77;
+    white-space: nowrap;
+}
+
+
+
+/*.tariff-page {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    background-color: white;*/
+/*}*/
+
+/*.tariff-page .tpanel {*/
+/*    padding-bottom: 150px;*/
+/*}*/
+
+/*@media screen and (max-width: 1439px) {*/
+/*    .tariff-page .banner-block_full-screen {*/
+/*        height: unset;*/
+/*    }*/
+/*}*/
+
+/*!* .... *!*/
+
+
+/*.banner-block {*/
+/*    position: relative;*/
+/*}*/
+
+/*.banner-block_full-screen {*/
+/*    display: flex;*/
+/*    !*height: -webkit-fit-content;*!*/
+/*    !*height: -moz-fit-content;*!*/
+/*    height: fit-content;*/
+/*    min-height: 947px;*/
+/*}*/
+
+/*@media screen and (max-width: 1919px) {*/
+/*    .banner-block_full-screen {*/
+/*        min-height: 917px;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (max-width: 1679px) {*/
+/*    .banner-block_full-screen {*/
+/*        min-height: 890px;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (max-width: 1439px) {*/
+/*    .banner-block_full-screen {*/
+/*        min-height: 732px;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (max-width: 1279px) {*/
+/*    .banner-block_full-screen {*/
+/*        min-height: 329px;*/
+/*        min-height: unset;*/
+/*        display: block;*/
+/*        padding-bottom: 0;*/
+/*    }*/
+/*}*/
+
+
+/*!* ... *!*/
+
+
+/*.banner-background-wrapper {*/
+/*    position: relative;*/
+/*    background-size: cover;*/
+/*    background-position: 100%;*/
+/*}*/
+/*@media (min-width: 0px) {*/
+/*    .banner-background-wrapper {*/
+/*        width: 50%;*/
+/*        height: 202px;*/
+/*    }*/
+/*}*/
+/*@media (min-width: 768px) {*/
+/*    .banner-background-wrapper {*/
+/*        height: 328px;*/
+/*    }*/
+/*}*/
+/*@media (min-width: 1280px) {*/
+/*    .banner-background-wrapper {*/
+/*        height: 348px;*/
+/*        margin-bottom: 144px;*/
+/*    }*/
+/*}*/
+/*@media (min-width: 1440px) {*/
+/*    .banner-background-wrapper {*/
+/*        height: 404px;*/
+/*        margin-bottom: 88px;*/
+/*    }*/
+/*}*/
+/*@media (min-width: 1680px) {*/
+/*    .banner-background-wrapper {*/
+/*        height: 480px;*/
+/*        margin-bottom: 140px;*/
+/*    }*/
+/*}*/
+/*@media (min-width: 1280px) {*/
+/*    .banner-background-wrapper_full-screen {*/
+/*        height: 50%;*/
+/*    }*/
+/*}*/
+
+
+/*!* ... *!*/
+
+/*.banner-background-wrapper .product-header__banner-picture {*/
+/*    height: 100%;*/
+/*    --mts-image-fit: cover;*/
+/*    width: 100%;*/
+/*}*/
+
+
+/*!* ... *!*/
+
+
+/*[_nghost-tgs-c86] {*/
+/*    display: inline-block;*/
+/*    min-width: 1px;*/
+/*    min-height: 1px;*/
+/*    pointer-events: none;*/
+/*    content-visibility: auto;*/
+/*}*/
+/*.picture .img{*/
+/*    all: revert !important;*/
+/*    display: block !important;*/
+/*    border-radius: inherit !important;*/
+/*    height: 100% !important;*/
+/*    min-width: 100% !important;*/
+/*    max-width: 100% !important;*/
+/*}*/
+/*.img[_ngcontent-tgs-c86] {*/
+/*    -o-object-fit: contain;*/
+/*    object-fit: contain;*/
+/*    object-fit: contain !important;*/
+/*    -o-object-fit: var(--mts-image-fit, contain) !important;*/
+/*    object-fit: var(--mts-image-fit, contain) !important;*/
+/*    -o-object-position: center;*/
+/*    object-position: center;*/
+/*    object-position: center !important;*/
+/*    -o-object-position: var(--mts-image-position, center) !important;*/
+/*    object-position: var(--mts-image-position, center) !important;*/
+/*}*/
+
+
+/*!* ... *!*/
+
+/*.banner-details-button {*/
+/*    display: none;*/
+/*}*/
+/*@media (min-width: 1280px) {*/
+/*    .banner-details-button {*/
+/*        display: block;*/
+/*        position: absolute;*/
+/*        bottom: 0;*/
+/*        left: 50%;*/
+/*        transform: translate3d(-50%, 0, 0);*/
+/*        padding: 20px 10px;*/
+/*        font-family: MTSsans, Arial, sans-serif;*/
+/*        font-size: 17px;*/
+/*        line-height: 24px;*/
+/*        color: var(--color-constant-greyscale-0);*/
+/*        opacity: 0.9;*/
+/*        cursor: pointer;*/
+/*        -webkit-animation: fadein 1s ease-out 2ms infinite alternate;*/
+/*        animation: fadein 1s ease-out 2ms infinite alternate;*/
+/*        z-index: 11;*/
+/*    }*/
+/*}*/
+/*@media (min-width: 1680px) {*/
+/*    .banner-details-button {*/
+/*        padding: 28px 10px 32px;*/
+/*        font-size: 20px;*/
+/*        line-height: 28px;*/
+/*    }*/
+/*}*/
+/*.banner-details-button:before {*/
+/*    position: absolute;*/
+/*    content: '';*/
+/*    top: 0;*/
+/*    right: calc(50% - 8px);*/
+/*    width: 16px;*/
+/*    height: 16px;*/
+/*    background: url(more-info-arrow.svg) 50%*/
+/*    no-repeat;*/
+/*    -webkit-animation: bounce 1s ease-out 2ms infinite alternate;*/
+/*    animation: bounce 1s ease-out 2ms infinite alternate;*/
+/*}*/
+/*@media (min-width: 1680px) {*/
+/*    .banner-details-button:before {*/
+/*        right: calc(50% - 12px);*/
+/*        width: 24px;*/
+/*        height: 24px;*/
+/*    }*/
+/*}*/
+
+/*@keyframes fadein {*/
+/*    0% {*/
+/*        opacity: 0.9;*/
+/*    }*/
+/*    to {*/
+/*        opacity: 0.5;*/
+/*    }*/
+/*}*/
+/*@-webkit-keyframes fadein {*/
+/*    0% {*/
+/*        opacity: 0.9;*/
+/*    }*/
+/*    to {*/
+/*        opacity: 0.5;*/
+/*    }*/
+/*}*/
+/*@keyframes bounce {*/
+/*    0% {*/
+/*        transform: translateZ(0);*/
+/*    }*/
+/*    to {*/
+/*        transform: translate3d(0, 8px, 0);*/
+/*    }*/
+/*}*/
+/*@-webkit-keyframes bounce {*/
+/*    0% {*/
+/*        transform: translateZ(0);*/
+/*    }*/
+/*    to {*/
+/*        transform: translate3d(0, 8px, 0);*/
+/*    }*/
+/*}*/

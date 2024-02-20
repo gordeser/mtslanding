@@ -47,7 +47,6 @@
   left: 0; /* Размещаем картинку слева контейнера */
   width: 100%; /* Ширина картинки равна ширине контейнера */
   height: 1000px; /* Высота картинки равна высоте контейнера */
-  background-image: url('//static.mts.ru/dpc_upload/contents/614/mts_novogodnij_3840_1894.avif'); /* Замените ссылку на ваше изображение */
   background-size: cover; /* Растягиваем изображение, чтобы оно занимало всю площадь */
   background-position: center; /* Центрируем изображение */
 }
@@ -219,7 +218,7 @@
   font-family: MTSCompact, sans-serif;
   font-size: 32px;
   font-weight: 500;
-  margin-bottom: -20px;
+  margin-bottom: -5px;
 
   /*align-items: flex-end;*/
   flex-wrap: wrap;
